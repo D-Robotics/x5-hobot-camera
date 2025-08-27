@@ -198,7 +198,7 @@ ${BUILD_OUTPUT_PATH}/%.o: ./%.c
 	$(Q)mkdir -p $(abspath $(dir $@))
 	$(Q)echo CC $@
 #	$(Q)$(CC) $(CFLAGS) $(CFLAGS_THIS) $(INCS) -c $< -o $@
-	$(Q)$(CC) $(CFLAGS) $(INCS) -c $< -o $@
+	$(Q)$(CC) $(CFLAGS) $(INCS) -MMD -c $< -o $@
 
 $(SO_NAMEV): $(SO_NAMEVER)
 	$(Q)echo LN $@

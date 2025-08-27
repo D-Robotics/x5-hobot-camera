@@ -175,7 +175,7 @@ int sc132gs_linear_data_init_1088x1280(sensor_info_t *sensor_info)
 	turning_data.sensor_data.analog_gain_init = 62;
 	turning_data.sensor_data.digital_gain_init = 0;
 	turning_data.sensor_data.exposure_time_init = 840;
-	// turning_data.sensor_data.delta_time = 2;
+	turning_data.sensor_data.delta_time = 2;
 
 	// raw10
 	sensor_data_bayer_fill(&turning_data.sensor_data, 10, (uint32_t)BAYER_START_B, (uint32_t)BAYER_PATTERN_RGGB);
@@ -470,8 +470,8 @@ int sensor_init(sensor_info_t *sensor_info)
 		switch(sensor_info->sensor_mode) {
 		case NORMAL_M:	  // 1: normal
 			vin_info("sc132gs in normal mode\n");
-			setting_size = sizeof(sc132gs_linear_init_1088x1280_30fps_setting_master) / sizeof(uint32_t) / 2;
-			ret = sensor_configure(sensor_info, sc132gs_linear_init_1088x1280_30fps_setting_master, setting_size);
+			setting_size = sizeof(sc132gs_linear_init_1088x1280_60fps_setting_master) / sizeof(uint32_t) / 2;
+			ret = sensor_configure(sensor_info, sc132gs_linear_init_1088x1280_60fps_setting_master, setting_size);
 			if (ret < 0) {
 				vin_err("%d : init %s fail\n", __LINE__, sensor_info->sensor_name);
 				return ret;
@@ -533,21 +533,7 @@ int sensor_start(sensor_info_t *sensor_info)
 				return ret;
 		}
 		break;
-	case SLAVE_M:
-		setting_size = sizeof(sc132gs_stream_on_setting)/sizeof(uint32_t)/2;
-		vin_err("start steam on slave mode, sensor_name %s, setting_size = %d\n", sensor_info->sensor_name, setting_size);
-		ret = vin_write_array(sensor_info->bus_num, sensor_info->sensor_addr, 2,
-				setting_size, sc132gs_stream_on_setting);
-		if(ret < 0) {
-				vin_err("start %s fail\n", sensor_info->sensor_name);
-				return ret;
-		}
-		break;
-	default:
-		vin_err("not support mode %d\n", sensor_info->sensor_mode);
-		ret = -RET_ERROR;
-		break;
-    }
+	}
 
 	return ret;
 }

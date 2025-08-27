@@ -47,9 +47,9 @@ extern "C" {
 #define CAM_SENSOR_CHECK_ADDR_MIN	(0x00)
 #define CAM_SENSOR_CHECK_ADDR_MAX	(0x7F)
 #define CAM_SENSOR_CHECK_SMODE_MIN	(1)
-#define CAM_SENSOR_CHECK_SMODE_MAX	(6)
+#define CAM_SENSOR_CHECK_SMODE_MAX	(7)
 #define CAM_SENSOR_CHECK_FPS_MIN	(0)
-#define CAM_SENSOR_CHECK_FPS_MAX	(120)
+#define CAM_SENSOR_CHECK_FPS_MAX	(200)
 #define CAM_SENSOR_CHECK_WIDTH_MIN	(0)
 #define CAM_SENSOR_CHECK_WIDTH_MAX	(8192)
 #define CAM_SENSOR_CHECK_HEIGHT_MIN	(0)
@@ -89,6 +89,7 @@ extern int32_t camera_sensor_get_csi_attr(sensor_info_t *sen_if, csi_attr_t *csi
 extern int32_t camera_sensor_get_version(sensor_info_t *sen_if, char *name, char *version);
 extern int32_t camera_sensor_dump(sensor_info_t *sen_if);
 extern int32_t camera_sensor_set_cali_name(camera_handle_st *hcam, char *sensor_name, int32_t camera_index, char *new_calib_lname);
+extern int32_t camera_sensor_otp_enable(sensor_info_t *sen_if, sensor_otp_t *otp_data);
 
 #ifdef __cplusplus
 }
