@@ -1,1 +1,0 @@
-../../tools/host_calibration/generate_lib/acamera_calib_mgr_settings.h
